@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://img.freepik.com/free-vector/background-monsoon-season_52683-115106.jpg");
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+img {
+  filter: blur(13px);
+}
+p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.weather-journal {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.inputs label,
+.inputs input,
+.inputs textarea,
+.inputs button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-block: 15px;
+}
+/* .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+} */
+
+button#generate {
+  background: #070ede;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button#generate:hover {
+  background: #010a25;
+}
+
+.weather-info {
+  display: none;
+  margin-top: 20px;
+}
+.api-output {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}

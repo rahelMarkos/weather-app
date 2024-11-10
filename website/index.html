@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather Journal Application</title>
+  </head>
+  <body>
+    <main class="weather-journal">
+      <section class="inputs">
+        <label for="country">Country OR City</label>
+        <input type="text" placeholder="Enter a country" id="country" />
+
+        <label for="zip">Zip Code</label>
+        <input type="text" placeholder="Enter zip code" id="zip" />
+
+        <label for="feelings">What Do You Feel Today?</label>
+        <textarea
+          id="feelings"
+          placeholder="What Do You Feel "
+          rows="5"
+        ></textarea>
+
+        <button id="generate">Generate</button>
+      </section>
+
+      <section class="weather-info">
+        <div class="api-output">
+          <h2 id="city" class="city"></h2>
+          <p id="date" class="date"></p>
+          <h3 id="weather"></h3>
+          <h1 id="temp"></h1>
+          <p id="content" class="content"></p>
+        </div>
+      </section>
+
+      <div class="error">
+        <p id="message"></p>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
