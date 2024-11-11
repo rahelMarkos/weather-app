@@ -1,32 +1,48 @@
-let projectData = {};
 const express = require("express");
+const cors = require("cors");
+const fetch = require("node-fetch");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
 const port = 8008;
-//parse the jison files from the clint side
+let projectData = {};
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("website"));
-
-const cors = require("cors");
 app.use(cors());
-app.post("/add", async (req, res) => {
-  const info = await req.body;
-  console.log(info);
-  projectData = info;
-  res.send(projectData);
-  // res.json(projectData);
-});
 
-app.get("/all", async (req, res) => {
-  // console.log(projectData);
-  // res.send(projectData);
-  if (projectData) {
-    res.send(projectData);
+// API key from environment variable
+const apiKey = process.env.API_KEY;
+
+app.get("/weather", async (req, res) => {
+  const city = req.query.city;
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`
+    );
+    const data = await response.json();
+    if (data.cod !== 200) throw new Error(data.message);
+    res.send(data);
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
+
+app.post("/add", (req, res) => {
+  projectData = req.body;
+  console.log(projectData);
+  res.send(projectData);
+});
+
+app.get("/all", (req, res) => {
+  res.json(projectData);
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
-  // console.log("listening on port" + port);
 });
